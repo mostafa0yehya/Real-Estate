@@ -1,0 +1,29 @@
+header {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 0 0 10px 10px;
+}
+ul li a {
+  position: relative;
+}
+ul li a::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 3.5px;
+  background-color: #062685;
+  bottom: -8px;
+  left: 0;
+  transition: 0.3s all ease-in-out;
+}
+ul li a:hover {
+  color: #062685;
+}
+ul li a:hover::before {
+  width: 100%;
+}
+ul li a.active::before {
+  width: 100%;
+}
+.active {
+  color: #062685;
+}

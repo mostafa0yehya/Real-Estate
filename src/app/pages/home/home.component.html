@@ -1,0 +1,352 @@
+<div class="main">
+  <div class="hero h-screen relative mb-10">
+    <div
+      class="content h-full flex-col flex justify-center ps-5 lg:ps-20 gap-6 pt-20"
+    >
+      <div
+        data-aos="fade-up"
+        class="flex gap-5 items-start flex-col justify-center lg:flex-row lg:items-center lg:justify-start"
+      >
+        <img src="/images/681fa15030b5138a486067f0_Hero Group Image.png" />
+        <div class="clients">
+          <img src="/images/681fa21a73079ca8a8394ff0_Hero Star Icon.svg" /><span
+            class="text-white"
+            >Trusted by 40+ clients
+          </span>
+        </div>
+      </div>
+      <h1
+        data-aos="fade-up"
+        data-aos-delay="100"
+        class="text-[35px] lg:text-[70px] w-full lg:w-[600px] font-bold head-title mb-[10px]"
+      >
+        Find Your Dream Home
+      </h1>
+      <p
+        data-aos="fade-up"
+        data-aos-delay="100"
+        class="w-full lg:w-[45%] text-[#f1f1f1] lg:text-[20px]"
+      >
+        Discover exceptional properties in the world's most desirable locations
+      </p>
+      <a
+        data-aos="fade-up"
+        data-aos-delay="200"
+        class="block p-2 lg:p-4 rounded text-white bg-secondary w-fit transition-colors hover:bg-head"
+        >Explore Property</a
+      >
+    </div>
+  </div>
+  <div class="why-us flex flex-col gap-16 my-20 px-5">
+    <div class="head flex justify-center items-center" data-aos="fade-up">
+      <h2
+        class="title font-semibold text-3xl lg:text-6xl text-center text-[#333333] max-w-[700px]"
+      >
+        Why choose our real estate expertise
+      </h2>
+    </div>
+    <div class="content">
+      <div class="container mx-auto grid md:grid-cols-2 gap-10">
+        <div class="images grid-cols-2 relative h-[550px] hidden md:grid">
+          <img
+            data-aos="fade-down-right"
+            src="/images/68418c6858cf9d7242812bd9_Estate Image 1.jpg"
+            alt=""
+            class="w-[300px] lg:w-[400px] absolute z-10 rounded-[15px]"
+          />
+          <div
+            data-aos="fade-up-left"
+            class="absolute z-20 top-40 right-[25px]"
+          >
+            <img
+              src="/images/68418c68dba87f46df478450_Estate Image 2.jpg"
+              alt=""
+              class="w-[300px] lg:w-[400px] rounded-[15px]"
+            />
+            <img
+              src="/images/68418c6709119f3bc8e64dcc_Estate Icon.svg"
+              class="absolute top-[-80px] lg:top-[-120px] right-9 lg:right-20 w-[100px] lg:w-[185px]"
+            />
+          </div>
+        </div>
+        <div class="features overflow-hidden">
+          <div class="feature flex gap-6 py-6 px-4" data-aos="fade-up">
+            <div class="icon relative text-white">
+              <span
+                class="w-[50px] h-[50px] bg-secondary rounded-full flex justify-center items-center"
+              >
+                <i class="fa-solid fa-users"></i>
+              </span>
+            </div>
+            <div class="content flex flex-col gap-3">
+              <h3 class="font-medium text-2xl text-second">Expert Guidance</h3>
+              <p class="opacity-70">
+                Find homes by filtering for bidding wars and recent market price
+                updates to make informed buying decisions easily.
+              </p>
+            </div>
+          </div>
+          <div class="feature flex gap-6 py-6 px-4" data-aos="fade-up">
+            <div class="icon relative text-white">
+              <span
+                class="w-[50px] h-[50px] bg-secondary rounded-full flex justify-center items-center"
+                ><i class="fa-solid fa-city"></i
+              ></span>
+            </div>
+            <div class="content flex flex-col gap-3">
+              <h3 class="font-medium text-2xl text-second">
+                Premium Property Selection
+              </h3>
+              <p class="opacity-70">
+                Find homes by filtering for bidding wars and recent market price
+                updates to make informed buying decisions easily.
+              </p>
+            </div>
+          </div>
+          <div class="feature flex gap-6 py-6 px-4" data-aos="fade-up">
+            <div class="icon relative text-white">
+              <span
+                class="w-[50px] h-[50px] bg-secondary rounded-full flex justify-center items-center"
+                ><i class="fa-solid fa-spa"></i>
+              </span>
+            </div>
+            <div class="content flex flex-col gap-3">
+              <h3 class="font-medium text-2xl text-second">
+                Stress-Free Process
+              </h3>
+              <p class="opacity-70">
+                Find homes by filtering for bidding wars and recent market price
+                updates to make informed buying decisions easily.
+              </p>
+            </div>
+          </div>
+          <div class="feature flex gap-6 py-6 px-4" data-aos="fade-up">
+            <div class="icon relative text-white">
+              <span
+                class="w-[50px] h-[50px] bg-secondary rounded-full flex justify-center items-center"
+                ><i class="fa-solid fa-crown"></i
+              ></span>
+            </div>
+            <div class="content flex flex-col gap-3">
+              <h3 class="font-medium text-2xl text-second">
+                Proven Track Record
+              </h3>
+              <p class="opacity-70">
+                Find homes by filtering for bidding wars and recent market price
+                updates to make informed buying decisions easily.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="properties py-5 lg:px-30">
+    <div class="container mx-auto">
+      <div class="title mb-5 px-5">
+        <h2 class="text-2xl lg:text-4xl font-bold mb-3 text-[#333333]">
+          Explore Properties Across Top Cities
+        </h2>
+        <p class="text-gray-600 text-[16px] lg:text-lg">
+          Browse through the best real estate listings in different locations
+        </p>
+      </div>
+      <p-tabs
+        value="0"
+        [lazy]="true"
+        (valueChange)="onTabChange($event)"
+        scrollable
+      >
+        <p-tablist class="cities-list">
+          @for (city of cities; track $index) {
+
+          <p-tab value="{{ $index }}">{{ city.name }}</p-tab>
+          }
+        </p-tablist>
+        <p-tabpanels>
+          @for (city of cities; track $index) { @if(activeTab==$index){
+          <p-tabpanel value="{{ $index }}">
+            @if(city.data){
+            <div
+              class="city-properties grid md:grid-cols-6 lg:grid-cols-3 gap-4"
+            >
+              @for (item of city.data; track $index) {
+
+              <div class="property rounded-xl overflow-hidden relative">
+                <span
+                  class="absolute top-2 right-2 bg-[#eea62b] p-1 text-white rounded-full text-sm"
+                  >{{ item.propertySubType }}</span
+                >
+                <img
+                  [src]="item.propertyImages.mainImageSrc"
+                  alt="{{ item.displayAddress }}"
+                  class="w-full h-48 object-cover"
+                />
+                <div class="p-3 flex flex-col gap-3">
+                  <div class="flex justify-between items-center">
+                    <h3 class="font-semibold text-head text-lg truncate">
+                      {{ item.displayAddress }}
+                    </h3>
+                  </div>
+                  <div class="flex gap-2 text-sm mt-2">
+                    <div>
+                      <span><i class="fa-solid fa-bed"></i></span>
+                      <span> {{ item.bedrooms }} |</span>
+                    </div>
+                    <div>
+                      <span><i class="fa-solid fa-bath"></i></span>
+                      <span> {{ item.bathrooms || 1 }}</span>
+                    </div>
+                    @if(item.displaySize){
+                    <span>
+                      <span><i class="fa-regular fa-square"></i></span>
+                      <span>{{ item.displaySize }}</span>
+                    </span>
+                    }
+                  </div>
+                  <span class="font-bold text-[20px] block">
+                    {{ item.price.displayPrices[0].displayPrice }}</span
+                  >
+                  <div class="card-footer">
+                    <a
+                      class="block bg-head text-white p-2 rounded text-center hover:bg-[#eea62b] transition-all"
+                      >Learn More</a
+                    >
+                  </div>
+                </div>
+              </div>
+
+              }
+            </div>
+
+            } @else {
+            <div
+              class="flex flex-col justify-center items-center py-10 space-y-3 grid-cols-12"
+            >
+              <span class="loader"></span>
+              <p class="text-gray-600 text-lg font-medium">
+                Loading {{ city.name }}...
+              </p>
+            </div>
+            }
+          </p-tabpanel>
+
+          } }
+        </p-tabpanels>
+      </p-tabs>
+    </div>
+  </div>
+  <div class="benefits px-5 my-5 py-5">
+    <div class="container mx-auto flex flex-col gap-10">
+      <h2
+        class="title font-semibold text-3xl lg:text-6xl text-[#333333] max-w-[700px]"
+      >
+        Unlock more value with Havenly
+      </h2>
+      <div class="columns grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div class="cards-column flex flex-col gap-8">
+          <div
+            class="card p-5 bg-[#F5F5F5] rounded-2xl flex flex-col gap-4 items-start"
+          >
+            <span class="text-[24px]"
+              ><i class="fa-solid fa-graduation-cap"></i
+            ></span>
+            <h3 class="text-2xl">Schools</h3>
+            <p class="opacity-70">
+              Find homes in top-rated school districts by filtering listings to
+              ensure the best education opportunities for your family.
+            </p>
+          </div>
+          <div
+            class="card p-5 bg-[#F5F5F5] rounded-2xl flex flex-col gap-4 items-start"
+          >
+            <span class="text-[24px]"
+              ><i class="fa-solid fa-truck-fast"></i
+            ></span>
+            <h3 class="text-2xl">Public transport</h3>
+            <p class="opacity-70">
+              Find homes with excellent public transit access for a convenient,
+              connected, and hassle-free commute.
+            </p>
+          </div>
+        </div>
+        <div
+          class="cards-column flex flex-col gap-8 md:h-[620px] xl:h-[460px] overflow-hidden relative images"
+        >
+          <div class="card-slider flex flex-col gap-8">
+            <div class="card rounded-2xl h-[200px] shrink-0">
+              <img
+                class="w-full h-full object-cover rounded-2xl"
+                src="/images/second-home-slider/683f60a265f537a3b7cd3bff_Features-Image-1.png"
+                alt=""
+              />
+            </div>
+            <div class="card rounded-2xl h-[200px] shrink-0">
+              <img
+                class="w-full h-full object-cover rounded-2xl"
+                src="/images/second-home-slider/683f60a37021d29070c31726_Features-Image-3.png"
+                alt=""
+              />
+            </div>
+            <div class="card rounded-2xl h-[200px] shrink-0">
+              <img
+                class="w-full h-full object-cover rounded-2xl"
+                src="/images/second-home-slider/683f60a3f9707f702ca521ba_Features-Image-2.png"
+                alt=""
+              />
+            </div>
+
+            <div class="card rounded-2xl h-[200px] shrink-0">
+              <img
+                class="w-full h-full object-cover rounded-2xl"
+                src="/images/second-home-slider/683f60a265f537a3b7cd3bff_Features-Image-1.png"
+                alt=""
+              />
+            </div>
+            <div class="card rounded-2xl h-[200px] shrink-0">
+              <img
+                class="w-full h-full object-cover rounded-2xl"
+                src="/images/second-home-slider/683f60a37021d29070c31726_Features-Image-3.png"
+                alt=""
+              />
+            </div>
+            <div class="card rounded-2xl h-[200px] shrink-0">
+              <img
+                class="w-full h-full object-cover rounded-2xl"
+                src="/images/second-home-slider/683f60a3f9707f702ca521ba_Features-Image-2.png"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="cards-column flex flex-col gap-8">
+          <div
+            class="card p-5 bg-[#F5F5F5] rounded-2xl flex flex-col gap-4 items-start"
+          >
+            <span class="text-[24px]"
+              ><i class="fa-solid fa-chart-column"></i>
+            </span>
+            <h3 class="text-2xl">Market comparison</h3>
+            <p class="opacity-70">
+              Stay updated on every new listing and price change in your area
+              for smarter real estate decisions effortlessly.
+            </p>
+          </div>
+          <div
+            class="card p-5 bg-[#F5F5F5] rounded-2xl flex flex-col gap-4 items-start"
+          >
+            <span class="text-[24px]">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+            </span>
+            <h3 class="text-2xl">Natural hazards</h3>
+            <p class="opacity-70">
+              Filter homes by seismic risks, flood risks, and more to find a
+              safe and secure property effortlessly.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

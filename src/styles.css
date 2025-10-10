@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: "Inter", sans-serif;
+}
+h1,
+h2,
+.head,
+.logo {
+  font-family: "Playfair Display", serif;
+}
+a {
+  cursor: pointer;
+}
+@media (width >= 96rem) {
+  .container {
+    width: 90%;
+  }
+}
+@theme {
+  --color-head: #0b1d51;
+  --color-second: #1f242e;
+  --color-secondary: #eea62b;
+}

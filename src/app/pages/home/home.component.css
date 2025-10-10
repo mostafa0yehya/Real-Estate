@@ -1,0 +1,124 @@
+.hero {
+  background: linear-gradient(rgba(0, 0, 0, 0)),
+    url(/images/681fa005c50b5252f8f0f2ab_Hero\ Image.jpg);
+  background-position: center;
+  background-size: cover;
+}
+.head-title {
+  line-height: 1.05;
+  letter-spacing: -1px;
+  color: white;
+}
+.head-title .title-special {
+  color: #eea62b;
+}
+.layer .text {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+}
+.loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  position: relative;
+  animation: rotate 1s linear infinite;
+}
+.loader::before,
+.loader::after {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  inset: 0px;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  animation: prixClipFix 2s linear infinite;
+}
+.loader::after {
+  border-color: #ff3d00;
+  animation: prixClipFix 2s linear infinite, rotate 0.5s linear infinite reverse;
+  inset: 6px;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes prixClipFix {
+  0% {
+    clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+  }
+  25% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+  }
+  50% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
+  }
+  75% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
+  }
+  100% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
+  }
+}
+.property {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.card-footer {
+  padding-top: 20px;
+  border-top: 1px solid #f1f1f1;
+}
+.cards-column {
+  overflow: hidden;
+  position: relative;
+}
+
+.card-slider {
+  animation: loopDown 20s linear infinite;
+}
+
+@keyframes loopDown {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.cards-column.images {
+  mask-image: linear-gradient(
+    to bottom,
+    hsla(0, 0%, 100%, 0),
+    hsl(0 0% 0% / 1) 10%,
+    hsl(0 0% 0% / 1) 50%,
+    hsla(0, 0%, 100%, 0)
+  );
+}
+
+@media (max-width: 768px) {
+  .cards-column {
+    height: 400px;
+  }
+}
+@media (width >= 48rem) {
+  .cards-column {
+    height: 580px;
+  }
+}
+@media (width >= 64rem) {
+  .cards-column {
+    height: 500px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .cards-column {
+    height: 460px;
+  }
+}

@@ -1,0 +1,201 @@
+<div class="container mx-auto">
+  <div
+    class="filters-header sticky top-0 mt-5 flex items-center flex-wrap gap-4 justify-center w-full overflow-hidden"
+  >
+    <p-select
+      [options]="cities"
+      [(ngModel)]="selectedCity"
+      (ngModelChange)="onFilterChange($event)"
+      [checkmark]="true"
+      optionLabel="name"
+      [showClear]="true"
+      placeholder="Select a City"
+      class="w-full md:w-56"
+    />
+    <p-multiselect
+      [options]="propertyTypes"
+      [(ngModel)]="selectedPropertyType"
+      placeholder="Property Type"
+      styleClass="w-full md:w-50"
+      (ngModelChange)="onFilterChange($event)"
+    />
+
+    <div class="bed-bath relative">
+      <a
+        (click)="toggleModal('bedbath')"
+        class="filter-btn border border-gray-300 block text-gray-500 w-fit rounded-[7px] px-4 py-2 select-none"
+      >
+        Beds & Baths <span><i class="fa-solid fa-angle-down"></i></span>
+      </a>
+
+      <div
+        [ngClass]="activeModal === 'bedbath' ? 'show-modal' : 'hide-modal'"
+        class="dialog flex-col gap-5 rounded p-3 absolute z-20 top-12 w-[300px] md:w-[400px] transition-all flex bg-amber-400"
+      >
+        <div class="bed">
+          <h4>Bedrooms</h4>
+          <div class="flex flex-wrap gap-2">
+            @for (bed of bedrooms; track $index) {
+
+            <p-button
+              [label]="bed"
+              [severity]="selectedBedroom === bed ? 'primary' : 'secondary'"
+              styleClass="w-10 justify-center"
+              (onClick)="selectBedroom(bed)"
+            ></p-button>
+            }
+          </div>
+        </div>
+
+        <div class="bath">
+          <h4 class="mb-2 font-semibold">Bathrooms</h4>
+          <div class="flex flex-wrap gap-2">
+            @for (bath of bathrooms; track $index) {
+            <p-button
+              [label]="bath"
+              [severity]="selectedBathroom === bath ? 'primary' : 'secondary'"
+              (onClick)="selectBathroom(bath)"
+              styleClass="w-10 justify-center"
+            ></p-button
+            >}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="price relative">
+      <a
+        (click)="toggleModal('price')"
+        class="filter-btn border border-gray-300 block text-gray-500 w-fit rounded-[7px] px-4 py-2 select-none"
+      >
+        Price<span><i class="fa-solid fa-angle-down"></i></span>
+      </a>
+
+      <div
+        [ngClass]="activeModal === 'price' ? 'show-modal' : 'hide-modal'"
+        class="dialog flex-col gap-5 p-4 rounded absolute z-20 top-12 w-[300px] md:w-[400px] transition-all flex"
+      >
+        <div class="flex justify-between overflow-hidden gap-2">
+          <p-floatlabel variant="in">
+            <input
+              pInputText
+              id="in_label"
+              type="text"
+              [(ngModel)]="minPrice"
+              autocomplete="off"
+              class="w-full pt-[20px] rounded-2xl px-2 border-1 border-gray-500 outline-gray-500"
+            />
+            <label for="in_label">Min Price</label>
+          </p-floatlabel>
+          <span class="opacity-30 translate-y-[10px]">____</span>
+          <p-floatlabel variant="in">
+            <input
+              pInputText
+              id="in_label"
+              type="text"
+              autocomplete="off"
+              [(ngModel)]="maxPrice"
+              class="w-full pt-[20px] border-1 border-gray-500 outline-gray-500 rounded-2xl px-2"
+            />
+            <label for="in_label">Max Price</label>
+          </p-floatlabel>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-result grid grid-cols-12 mt-5">
+    <div class="properties col-span-8">
+      <div class="property rounded-2xl overflow-hidden">
+        <div class="property-details flex flex-wrap">
+          <img
+            src="/images/property-test-image/7879573-d6fc9o.webp"
+            alt=""
+            class="w-full md:w-[40%]"
+          />
+          <div class="info flex-1 px-4 py-2 flex gap-2">
+            <div class="property-info flex-1 flex justify-between flex-col">
+              <div class="price-info flex flex-col gap-2">
+                <span class="opacity-70">Villa</span>
+                <h3 class="text-[18px] font-bold">8.500.000 Egp</h3>
+                <p class="opacity-70">Villa For Sale in nasr city</p>
+              </div>
+              <div class="details flex gap-2 text-sm mt-2 text-gray-700">
+                <div>
+                  <span><i class="fa-solid fa-bed"></i></span>
+                  <span> 5</span>
+                </div>
+                <div>
+                  <span><i class="fa-solid fa-bath"></i></span>
+                  <span>2</span>
+                </div>
+
+                <span class="flex items-center gap-1">
+                  <span>
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="styles-module_content__details-icon__Hjx-H"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M6 19.2563L7.14783 18.1236C7.34385 17.9292 7.66043 17.9304 7.85493 18.1263C8.04943 18.3222 8.04819 18.6386 7.85217 18.833L5.85217 20.8084C5.65723 21.0017 5.34277 21.0017 5.14783 20.8084L3.14783 18.833C2.95181 18.6386 2.95057 18.3222 3.14507 18.1263C3.33957 17.9304 3.65615 17.9292 3.85217 18.1236L5 19.2563V9.6821L3.85217 10.8148C3.65615 11.0092 3.33957 11.008 3.14507 10.8121C2.95057 10.6162 2.95181 10.2998 3.14783 10.1054L5.14783 8.13006C5.34277 7.93677 5.65723 7.93677 5.85217 8.13006L7.85217 10.1054C8.04819 10.2998 8.04943 10.6162 7.85493 10.8121C7.66043 11.008 7.34385 11.0092 7.14783 10.8148L6 9.6821V19.2563ZM9.70978 5.99806L10.8433 7.14514C11.0378 7.34104 11.0365 7.65741 10.8405 7.85179C10.6445 8.04616 10.3279 8.04492 10.1334 7.84902L8.15674 5.85032C7.96332 5.65551 7.96332 5.34125 8.15674 5.14644L10.1334 3.14773C10.3279 2.95184 10.6445 2.9506 10.8405 3.14497C11.0365 3.33935 11.0378 3.65572 10.8433 3.85162L9.70978 4.9987H19.2902L18.1567 3.85162C17.9622 3.65572 17.9635 3.33935 18.1595 3.14497C18.3555 2.9506 18.6721 2.95184 18.8666 3.14773L20.8433 5.14644C21.0367 5.34125 21.0367 5.65551 20.8433 5.85032L18.8666 7.84902C18.6721 8.04492 18.3555 8.04616 18.1595 7.85179C17.9635 7.65741 17.9622 7.34104 18.1567 7.14514L19.2902 5.99806H9.70978ZM21 19.0013C21 20.1052 20.1046 21 19 21H11C9.89543 21 9 20.1052 9 19.0013V11.0065C9 9.90263 9.89543 9.00778 11 9.00778H19C20.1046 9.00778 21 9.90263 21 11.0065V13.0052H20V11.0065C20 10.4546 19.5523 10.0071 19 10.0071H11C10.4477 10.0071 10 10.4546 10 11.0065V19.0013C10 19.5532 10.4477 20.0006 11 20.0006H19C19.5523 20.0006 20 19.5532 20 19.0013H21ZM21 17.0026H20V15.0039H21V17.0026Z"
+                        fill="currentColor"
+                      ></path>
+                    </svg>
+                  </span>
+                  <span>10000</span>
+                </span>
+              </div>
+            </div>
+            <div class="logo w-[15%] flex flex-col gap-2">
+              <span class="text-[#b78a00]"> premium</span>
+              <img src="/images/property-test-image/2293-logo.jpg" alt="logo" />
+            </div>
+          </div>
+        </div>
+        <div
+          class="property-footer bg-gray-50 p-2 relative flex justify-between items-center"
+        >
+          <span class="text-[14px] opacity-70">Listed date</span>
+          <div class="contact flex gap-2">
+            <a
+              (click)="toggleNumber()"
+              class="flex justify-center items-center select-none py-1 px-2 rounded text-[#3a307f] border border-[#3a307f] transition-all hover:bg-[#3a307f] hover:text-white"
+            >
+              <span
+                ><span><i class="fa-solid fa-phone"></i></span>
+                {{ showNumber ? "+1210886136" : "Call" }}</span
+              ></a
+            >
+            <a
+              href="https://wa.me/201210886136"
+              target="_blank"
+              class="flex justify-center items-center select-none py-1 px-2 rounded text-[#3a307f] border border-[#3a307f] transition-all hover:bg-[#3a307f] hover:text-white"
+            >
+              <span> <i class="fa-brands fa-whatsapp"></i> </span>
+              <span>WhatsApp</span>
+            </a>
+            <span class="w-[1.5px] bg-gray-200 block"></span>
+            <div class="flex justify-between share gap-2">
+              <a
+                class="text-[18px] flex justify-center items-center select-none py-1 px-2 rounded text-[#3a307f] border border-[#3a307f] transition-all hover:bg-[#3a307f] hover:text-white"
+              >
+                <span><i class="fa-regular fa-heart"></i></span>
+              </a>
+              <a
+                class="text-[18px] flex justify-center items-center select-none py-1 px-2 rounded text-[#3a307f] border border-[#3a307f] transition-all hover:bg-[#3a307f] hover:text-white"
+                ><span><i class="fa-solid fa-ellipsis-vertical"></i></span
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="map col-span-4"></div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<button class="filter-btn" (click)="toggleFilter()">Filters</button>
+
+<div class="filter-panel" [class.open]="isFilterOpen">
+  <button class="close-btn" (click)="toggleFilter()">✕</button>
+
+  <h3>Orientation</h3>
+  <label><input type="radio" name="orientation" /> Any</label>
+  <label><input type="radio" name="orientation" /> Horizontal</label>
+  <label><input type="radio" name="orientation" /> Vertical</label>
+
+  <!-- تقدر تضيف باقي الفلاتر هنا -->
+</div>
+
+<!-- <div class="overlay" *ngIf="isFilterOpen" (click)="toggleFilter()"></div> -->
