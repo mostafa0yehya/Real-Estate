@@ -1,0 +1,226 @@
+<div class="container mx-auto my-10 w-[80%]">
+  <a (click)="showDialog()">
+    <div class="images grid grid-cols-6 gap-3">
+      <div class="main col-span-4 relative">
+        <img
+          class="object-cover h-full rounded-2xl"
+          [src]="propertyDetails()?.images?.[0]?.url"
+          alt=""
+        />
+        <span
+          class="absolute bottom-4 right-4 bg-main text-white p-2 rounded flex gap-2 items-center text-[14px]"
+        >
+          <span><i class="fa-regular fa-camera"></i></span>
+
+          <span>{{ propertyDetails()?.images?.length }}</span>
+        </span>
+      </div>
+      <div class="other col-span-2 flex flex-col gap-3">
+        <img
+          class="object-cover rounded-2xl"
+          [src]="propertyDetails()?.images?.[1]?.url"
+          alt=""
+        />
+        <img
+          class="object-cover rounded-2xl"
+          [src]="propertyDetails()?.images?.[2]?.url"
+          alt=""
+        />
+      </div>
+    </div>
+  </a>
+  <div
+    class="price my-5 flex flex-col content-center gap-2 border-b-1 border-gray-200 p-2 py-4"
+  >
+    <span class="location text-[18px] text-[#626c84]">
+      <span><i class="fas fa-location-dot"></i></span>
+      {{ propertyDetails()?.address?.displayAddress }}</span
+    >
+    <div class="h3 text-[60px] font-bold text-head">
+      {{ propertyDetails()?.prices?.primaryPrice }}
+    </div>
+    <span
+      class="capitalize bg-secondary text-white p-2 w-fit rounded-2xl text-[12px]"
+    >
+      {{ propertyDetails()?.tenure?.tenureType | lowercase }}</span
+    >
+  </div>
+  <div class="info col-span-4 grid grid-cols-3 gap-5">
+    <div
+      class="card-info flex flex-col text-head rounded-2xl p-4 items-center gap-3 text-[18px] font-bold"
+    >
+      <span class="text-secondary"><i class="fas fa-bed"></i></span>
+      <span>{{ propertyDetails()?.bedrooms }}</span>
+      <span class="opacity-50">Bedrooms</span>
+    </div>
+    <div
+      class="card-info flex flex-col text-head rounded-2xl p-4 items-center gap-3 text-[18px] font-bold"
+    >
+      <span class="text-secondary"><i class="fas fa-shower"></i></span>
+      <span>{{ propertyDetails()?.bathrooms }}</span>
+      <span class="opacity-50">Bathrooms</span>
+    </div>
+    <div
+      class="card-info flex flex-col text-head rounded-2xl p-4 items-center gap-3 text-[18px] font-bold"
+    >
+      <span class="text-secondary"> <i class="fa-solid fa-ruler"></i></span>
+      <span>{{ propertyDetails()?.propertySubType }}</span>
+      <span class="opacity-50">Type</span>
+    </div>
+  </div>
+  @if(isExpanded){
+  <div
+    class="property-description my-4 leading-relaxed text-gray-600"
+    [innerHTML]="propertyDetails()?.text?.description"
+  ></div>
+  <a
+    class="block text-secondary text-[18px] w-fit p-2 hover:text-main transition-colors"
+    (click)="isExpanded = false"
+    >Show Less</a
+  >
+
+  } @else {
+  <div class="property-description my-4 leading-relaxed">
+    {{ propertyDetails()?.text?.shareDescription }} ...
+    <a
+      class="block text-secondary text-[18px] w-fit p-2 hover:text-main transition-colors"
+      (click)="isExpanded = true"
+      >Show More</a
+    >
+  </div>
+
+  }
+
+  <div
+    class="features-section my-5 flex flex-col gap-5 border border-gray-200 p-4 rounded-2xl"
+  >
+    <h3 class="text-[24px] text-head font-bold">Key Features</h3>
+    <div class="features gap-3 grid grid-cols-2">
+      @for (item of propertyDetails()?.keyFeatures; track $index) {
+      <div
+        class="feature col-span-1 bg-secondary p-3 rounded-xl text-head flex gap-4 items-center"
+      >
+        <span
+          class="bg-secondary flex items-center justify-center text-white size-[18px] rounded-full text-[10px]"
+        >
+          <i class="fa-solid fa-check"></i>
+        </span>
+        <span> {{ item }} </span>
+      </div>
+
+      }
+    </div>
+  </div>
+
+  <div
+    class="Location-section my-5 flex flex-col gap-5 border border-gray-200 p-4 rounded-2xl"
+  >
+    <h3 class="text-[24px] text-head font-bold">
+      <span class="text-secondary pe-2"
+        ><i class="fa-solid fa-location-dot"></i></span
+      >Location & Transport
+    </h3>
+    <div
+      class="Location flex flex-col gap-3 h-[300px] flex-wrap"
+      id="propertyMap"
+    ></div>
+    <div class="staions mt-4 flex flex-col gap-4">
+      <h4 class="flex text-head">
+        <span class="pe-2 text-secondary">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-tram-front h-5 w-5 text-accent"
+          >
+            <rect width="16" height="16" x="4" y="3" rx="2"></rect>
+            <path d="M4 11h16"></path>
+            <path d="M12 3v8"></path>
+            <path d="m8 19-2 3"></path>
+            <path d="m18 22-2-3"></path>
+            <path d="M8 15h.01"></path>
+            <path d="M16 15h.01"></path></svg
+        ></span>
+        Nearest Stations
+      </h4>
+      <div class="list flex flex-col gap-2">
+        @for (station of propertyDetails()?.nearestStations; track $index) {
+        <div class="sation flex justify-between p-2 rounded bg-[#eeeeeeee]">
+          <span class="text-head">{{ station.name }}</span>
+          <span class="opacity-50"
+            >{{ station.distance.toFixed(2) }}
+            <span>{{ station.unit }}</span></span
+          >
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="agent-card border-1 border-gray-200 w-full md:w-[70%]">
+    <div class="agent-header text-[22px] font-bold text-head p-4">
+      Contact Agent
+    </div>
+    <div class="agent-body p-4 flex flex-col gap-4">
+      <div class="flex justify-between items-center">
+        <div class="flex items-center gap-2">
+          <span class="text-head text-[22px]">
+            <i class="fa-solid fa-building"></i>
+          </span>
+
+          <div class="text">
+            <h3 class="font-bold text-head">
+              {{ propertyDetails()?.customer?.companyName }}
+            </h3>
+
+            <span class="text-[14px] text-[#626c84]">
+              <i class="fas fa-location-dot"></i>
+              {{ propertyDetails()?.customer?.displayAddress }}
+            </span>
+          </div>
+        </div>
+        <img
+          class="rounded"
+          [src]="propertyDetails()?.customer?.logoPath"
+          alt=""
+        />
+      </div>
+
+      <div
+        class="phone bg-secondary text-white flex items-center justify-center p-2 rounded gap-3 w-fit"
+      >
+        <span><i class="fa-solid fa-phone"></i></span>
+        <span>{{
+          propertyDetails()?.contactInfo?.telephoneNumbers?.localNumber
+        }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-dialog
+  header="Gallery"
+  [modal]="true"
+  [(visible)]="galleryVisible"
+  [style]="{ width: '50rem' }"
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+  [maximizable]="true"
+>
+  <swiper-container class="mySwiper" init="false" #swiperRef>
+    @for (image of propertyDetails()?.images; track $index) {
+
+    <swiper-slide class="flex justify-center items-center"
+      ><img
+        class="object-contain w-[80%] max-h-[75vh]"
+        [src]="image.url"
+        alt=""
+    /></swiper-slide>
+    }
+  </swiper-container>
+</p-dialog>

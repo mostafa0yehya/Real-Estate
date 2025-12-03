@@ -3,13 +3,12 @@
 }
 .show-modal {
   opacity: 1;
-  visibility: visible;
+
   transform: translateY(0);
 }
 .hide-modal {
-  visibility: hidden;
   opacity: 0;
-  transform: translateY(10px);
+  transform: translateY(100%);
 }
 .property {
   box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
@@ -34,4 +33,10 @@ swiper-slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.filters-header {
+  border-top: 2px solid #eee;
+}
+.city-name {
+  font-family: "Playfair Display";
 }

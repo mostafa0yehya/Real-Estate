@@ -1,0 +1,14 @@
+.card-info {
+  background-color: rgba(6, 26, 77, 0.1);
+}
+.agent-header {
+  background-color: rgba(6, 26, 77, 0.1);
+}
+.feature {
+  /* background-color: rgba(249, 115, 22, 0.1); */
+  background-color: #eeeeeeee;
+  transition: 0.3s all;
+}
+.feature:hover {
+  transform: translateX(5px);
+}

@@ -37,10 +37,10 @@ export interface PropertyFilter {
 
   keywords?: string;
 }
-enum SortBy {
-  HighestPrice,
-  LowestPrice,
-  NewestListed,
-  OldestListed,
-  NearestFirst,
+export enum SortBy {
+  HighestPrice = 'HighestPrice',
+  LowestPrice = 'LowestPrice',
+  NewestListed = 'NewestListed',
+  OldestListed = 'OldestListed',
+  NearestFirst = 'NearestFirst',
 }

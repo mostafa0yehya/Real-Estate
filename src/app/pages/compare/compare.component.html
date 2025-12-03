@@ -1,0 +1,256 @@
+<div class="compare-section bg-[#F6F7F9] py-8 min-h-[90vh]">
+  <div class="heading text-center py-8">
+    <h2 class="text-head head-title text-4xl font-bold">Property Comparison</h2>
+    <p class="opacity-70">
+      Compare two properties to choose the best one for your needs
+    </p>
+  </div>
+
+  <div class="container mx-auto px-4 w-[80%]">
+    @if(properties().length>0){
+
+    <div class="comparison shadow-sm">
+      <div class="properties grid gap-4 grid-cols-2 p-6">
+        @for (prop of properties(); track $index) {
+        <div class="property flex flex-col justify-center items-center gap-3">
+          <div class="image overflow-hidden rounded-2xl w-full">
+            <img
+              [src]="prop.propertyImages.mainImageSrc"
+              alt=""
+              class="w-full h-[200px] object-cover transition duration-300"
+            />
+          </div>
+
+          <h3 class="text-[20px] font-bold text-[#1F2937]">
+            {{ prop.propertyTypeFullDescription }}
+          </h3>
+          <p class="opacity-50 text-[14px]">
+            <span><i class="fa-solid fa-location-dot"></i></span>
+            {{ prop.displayAddress }}
+          </p>
+        </div>
+        }
+      </div>
+
+      <table class="w-full text-start">
+        <thead class="bg-[#F7F8F9] text-head">
+          <tr>
+            <th class="text-start">Features</th>
+            <th>Property A</th>
+            <th>Property B</th>
+          </tr>
+        </thead>
+        <tbody class="text-center bg-white">
+          <tr>
+            <td>
+              <div class="feature flex items-center gap-2">
+                <span class="icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-dollar-sign w-4 h-4 text-primary"
+                  >
+                    <line x1="12" x2="12" y1="2" y2="22"></line>
+                    <path
+                      d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+                    ></path>
+                  </svg>
+                </span>
+                <span>Price</span>
+              </div>
+            </td>
+            @for (prop of properties(); track $index) {
+            <td>{{ prop.price.amount | currency : "GBP" }}</td>
+
+            }
+          </tr>
+          <tr>
+            <td>
+              <div class="feature flex items-center gap-2 text-start">
+                <span class="icon">
+                  <i class="fa-regular fa-house"></i>
+                </span>
+                <span>Property Type</span>
+              </div>
+            </td>
+            @for (prop of properties(); track $index) {
+            <td>{{ prop.propertySubType }}</td>
+
+            }
+          </tr>
+          <tr>
+            <td>
+              <div class="feature flex items-center gap-2">
+                <span class="icon">
+                  <i class="fa-solid fa-bed"></i>
+                </span>
+                <span>Bedrooms</span>
+              </div>
+            </td>
+            @for (prop of properties(); track $index) {
+            <td>{{ prop.bedrooms }}</td>
+
+            }
+          </tr>
+          <tr>
+            <td>
+              <div class="feature flex items-center gap-2">
+                <span class="icon">
+                  <i class="fa-solid fa-shower"></i>
+                </span>
+                <span>Bathroom</span>
+              </div>
+            </td>
+            @for (prop of properties(); track $index) {
+            <td>{{ prop.bathrooms }}</td>
+
+            }
+          </tr>
+          <tr>
+            <td>
+              <div class="feature flex items-center gap-2">
+                <span class="icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-maximize w-4 h-4 text-primary"
+                  >
+                    <path d="M8 3H5a2 2 0 0 0-2 2v3"></path>
+                    <path d="M21 8V5a2 2 0 0 0-2-2h-3"></path>
+                    <path d="M3 16v3a2 2 0 0 0 2 2h3"></path>
+                    <path d="M16 21h3a2 2 0 0 0 2-2v-3"></path>
+                  </svg>
+                </span>
+                <span>Area</span>
+              </div>
+            </td>
+
+            @for (prop of properties(); track $index) {
+            <td>{{ prop.displaySize }}</td>
+
+            }
+          </tr>
+          <tr>
+            <td>
+              <div class="feature flex items-center gap-2">
+                <span class="icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-file-text w-4 h-4 text-muted-foreground"
+                  >
+                    <path
+                      d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"
+                    ></path>
+                    <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
+                    <path d="M10 9H8"></path>
+                    <path d="M16 13H8"></path>
+                    <path d="M16 17H8"></path>
+                  </svg>
+                </span>
+                <span>Description</span>
+              </div>
+            </td>
+            @for (prop of properties(); track $index) {
+            <td>
+              <p class="text-sm opacity-70 leading-6">
+                {{ prop.summary }}
+              </p>
+            </td>
+            }
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    } @else {
+    <div
+      class="w-full h-[300px] flex flex-col justify-center items-center text-center"
+    >
+      <p class="text-xl font-semibold text-red-600">
+        No properties available for comparison
+      </p>
+      <p class="text-gray-400 mt-2">
+        Please select two or more properties to compare.
+      </p>
+    </div>
+    }
+    <!-- <div class="summary">
+      <div class="block space-y-6">
+        @for (property of properties; track $index; let i=$index) {
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
+          <div class="flex items-center gap-3 mb-3">
+            <div
+              class="w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden border border-gray-200"
+            >
+              <img
+                [src]="property.propertyImages.mainImageSrc"
+                alt="Property Image"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-800 text-lg leading-tight">
+                {{
+                  property.propertyTypeFullDescription || "Property " + (i + 1)
+                }}
+              </h3>
+              <p class="text-sm text-gray-500">
+                {{ property.propertySubType }}
+              </p>
+            </div>
+          </div>
+
+          <div class="divide-y divide-gray-100 text-sm text-gray-700">
+            <div class="py-2 flex justify-between">
+              <span class="font-medium text-gray-600">💷 Price:</span>
+              <span>{{ property.price.amount | currency : "GBP" }}</span>
+            </div>
+            <div class="py-2 flex justify-between">
+              <span class="font-medium text-gray-600">🏠 Type:</span>
+              <span>{{ property.propertySubType }}</span>
+            </div>
+            <div class="py-2 flex justify-between">
+              <span class="font-medium text-gray-600">🛏 Bedrooms:</span>
+              <span>{{ property.bedrooms }}</span>
+            </div>
+            <div class="py-2 flex justify-between">
+              <span class="font-medium text-gray-600">🚿 Bathrooms:</span>
+              <span>{{ property.bathrooms }}</span>
+            </div>
+            <div class="py-2 flex justify-between">
+              <span class="font-medium text-gray-600">📏 Area:</span>
+              <span>{{ property.displaySize }}</span>
+            </div>
+            <div class="py-2">
+              <p class="text-gray-500 leading-relaxed text-sm">
+                {{ property.summary }}
+              </p>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div> -->
+  </div>
+</div>

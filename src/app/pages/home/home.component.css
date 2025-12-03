@@ -4,6 +4,7 @@
   background-position: center;
   background-size: cover;
 }
+/*
 .head-title {
   line-height: 1.05;
   letter-spacing: -1px;
@@ -11,7 +12,7 @@
 }
 .head-title .title-special {
   color: #eea62b;
-}
+}*/
 .layer .text {
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
 }
@@ -33,7 +34,7 @@
   animation: prixClipFix 2s linear infinite;
 }
 .loader::after {
-  border-color: #ff3d00;
+  border-color: #f97316;
   animation: prixClipFix 2s linear infinite, rotate 0.5s linear infinite reverse;
   inset: 6px;
 }
@@ -100,18 +101,27 @@
     hsla(0, 0%, 100%, 0)
   );
 }
-
-@media (max-width: 768px) {
+@media (max-width: 450px) {
   .cards-column {
-    height: 400px;
+    height: 500px;
   }
 }
-@media (width >= 48rem) {
+@media (min-width: 451px) {
+  .cards-column {
+    height: 420px;
+  }
+}
+@media (min-width: 768px) {
   .cards-column {
     height: 580px;
   }
 }
-@media (width >= 64rem) {
+@media (min-width: 960px) {
+  .cards-column {
+    height: 530px;
+  }
+}
+@media (min-width: 1024px) {
   .cards-column {
     height: 500px;
   }
@@ -121,4 +131,57 @@
   .cards-column {
     height: 460px;
   }
+}
+.property-types {
+  background: linear-gradient(135deg, #061a4d 0, #0a2463 100%);
+}
+/* .property-types-head::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 2px;
+  background-color: #fff;
+  bottom: -15px;
+} */
+.typeCard {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid #ffffff33;
+  transition: 0.3s all;
+}
+.typeCard:hover {
+  transform: translateY(-10px);
+  background-color: #ffffff26;
+}
+.typeIcon {
+  transition: 0.3s all;
+}
+.typeCard:hover .typeIcon {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+}
+.special-properties .property-types-head::before {
+  background-color: black;
+}
+
+/* swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+} */
+
+swiper-container {
+  width: 100%;
+  height: 530px;
+  margin: 35px 0;
 }
