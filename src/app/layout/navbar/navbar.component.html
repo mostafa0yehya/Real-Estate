@@ -1,21 +1,29 @@
-<header class="relative bg-white">
-  <div class="container mx-auto flex justify-between items-center py-4 px-4">
-    <a class="logo block text-head text-3xl font-bold"
-      ><span><i class="fa-regular fa-house"></i></span>
-      <span> LuxeEstate</span>
+<header class="fixed left-0 right-0 top-0 z-[1000] bg-white dark:bg-gray-900">
+  <div
+    class="container relative mx-auto flex justify-between items-center py-2 md:py-4 px-4 flex-col md:flex-row gap-4"
+  >
+    <a
+      routerLink="/home"
+      class="logo text-head dark:text-white text-xl md:text-3xl font-bold flex"
+      ><span
+        ><i class="fa-regular fa-house text-head dark:text-white"></i
+      ></span>
+      <span class="text-head dark:text-white"> LuxeEstate</span>
     </a>
-    <ul class="links items-center justify-between hidden md:flex xl:w-[30%]">
+    <ul
+      class="links items-center gap-4 w-full flex xl:w-[30%] justify-center md:justify-end me-5"
+    >
       <li>
         <a
           routerLink="/home"
-          class="me-5 text-text text-[18px]"
+          class="me-5 text-text dark:text-gray-300 text-sm md:text-[18px]"
           routerLinkActive="active"
           >Home</a
         >
       </li>
       <li>
         <a
-          class="me-5 text-second text-[18px]"
+          class="me-5 text-second dark:text-blue-400 text-sm md:text-[18px]"
           routerLink="/properties"
           routerLinkActive="active"
           >Buy</a
@@ -23,25 +31,21 @@
       </li>
       <li>
         <a
-          class="me-5 text-second text-[18px]"
+          class="me-5 text-second dark:text-blue-400 text-sm md:text-[18px]"
           routerLinkActive="active"
           routerLink="/compare"
           >Compare</a
         >
       </li>
-      <li>
-        <a class="me-5 text-second text-[18px]" routerLinkActive="active"
-          >Agents</a
-        >
-      </li>
-      <li>
-        <a
-          class="me-5 text-second text-[18px]"
-          routerLinkActive="active"
-          routerLink="/prices"
-          >Prices</a
-        >
-      </li>
     </ul>
+    <p-toggleswitch
+      (onChange)="toggle($event)"
+      [(ngModel)]="checked"
+      class="absolute right-0 top-[22px]"
+    >
+      <ng-template #handle let-checked="checked">
+        <i [class]="['!text-xs', 'pi', checked ? 'pi-moon' : 'pi-sun']"></i>
+      </ng-template>
+    </p-toggleswitch>
   </div>
 </header>

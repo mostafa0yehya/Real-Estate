@@ -24,6 +24,7 @@ ul li a:hover::before {
 ul li a.active::before {
   width: 100%;
 }
+
 .active {
   color: #062685;
 }

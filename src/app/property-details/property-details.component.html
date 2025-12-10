@@ -1,6 +1,6 @@
-<div class="container mx-auto my-10 w-[80%]">
+<div class="container mx-auto md:mt-16 md:w-[80%] p-4">
   <a (click)="showDialog()">
-    <div class="images grid grid-cols-6 gap-3">
+    <div class="images grid grid-cols-6 gap-2 md:gap-3">
       <div class="main col-span-4 relative">
         <img
           class="object-cover h-full rounded-2xl"
@@ -8,7 +8,7 @@
           alt=""
         />
         <span
-          class="absolute bottom-4 right-4 bg-main text-white p-2 rounded flex gap-2 items-center text-[14px]"
+          class="absolute bottom-2 right-2 bg-main text-white p-1 md:p-2 rounded flex gap-2 items-center text-sm md:text-[14px]"
         >
           <span><i class="fa-regular fa-camera"></i></span>
 
@@ -17,12 +17,12 @@
       </div>
       <div class="other col-span-2 flex flex-col gap-3">
         <img
-          class="object-cover rounded-2xl"
+          class="object-cover rounded-2xl h-full"
           [src]="propertyDetails()?.images?.[1]?.url"
           alt=""
         />
         <img
-          class="object-cover rounded-2xl"
+          class="object-cover rounded-2xl h-full"
           [src]="propertyDetails()?.images?.[2]?.url"
           alt=""
         />
@@ -30,13 +30,15 @@
     </div>
   </a>
   <div
-    class="price my-5 flex flex-col content-center gap-2 border-b-1 border-gray-200 p-2 py-4"
+    class="price my-5 flex flex-col content-center gap-4 md:gap-2 border-b border-gray-200 dark:border-gray-700 p-2 py-4"
   >
-    <span class="location text-[18px] text-[#626c84]">
+    <span class="location md:text-[18px] text-gray-600 dark:text-gray-400">
       <span><i class="fas fa-location-dot"></i></span>
       {{ propertyDetails()?.address?.displayAddress }}</span
     >
-    <div class="h3 text-[60px] font-bold text-head">
+    <div
+      class="h3 text-[40px] md:text-[60px] font-bold text-gray-900 dark:text-white"
+    >
       {{ propertyDetails()?.prices?.primaryPrice }}
     </div>
     <span
@@ -45,23 +47,23 @@
       {{ propertyDetails()?.tenure?.tenureType | lowercase }}</span
     >
   </div>
-  <div class="info col-span-4 grid grid-cols-3 gap-5">
+  <div class="info col-span-4 grid grid-cols-1 md:grid-cols-3 gap-5">
     <div
-      class="card-info flex flex-col text-head rounded-2xl p-4 items-center gap-3 text-[18px] font-bold"
+      class="card-info flex flex-col text-head dark:text-white rounded-2xl p-4 items-center gap-3 text-[18px] font-bold"
     >
       <span class="text-secondary"><i class="fas fa-bed"></i></span>
       <span>{{ propertyDetails()?.bedrooms }}</span>
       <span class="opacity-50">Bedrooms</span>
     </div>
     <div
-      class="card-info flex flex-col text-head rounded-2xl p-4 items-center gap-3 text-[18px] font-bold"
+      class="card-info flex flex-col text-head dark:text-white rounded-2xl p-4 items-center gap-3 text-[18px] font-bold"
     >
       <span class="text-secondary"><i class="fas fa-shower"></i></span>
       <span>{{ propertyDetails()?.bathrooms }}</span>
       <span class="opacity-50">Bathrooms</span>
     </div>
     <div
-      class="card-info flex flex-col text-head rounded-2xl p-4 items-center gap-3 text-[18px] font-bold"
+      class="card-info flex flex-col text-head dark:text-white rounded-2xl p-4 items-center gap-3 text-[18px] font-bold"
     >
       <span class="text-secondary"> <i class="fa-solid fa-ruler"></i></span>
       <span>{{ propertyDetails()?.propertySubType }}</span>
@@ -70,7 +72,7 @@
   </div>
   @if(isExpanded){
   <div
-    class="property-description my-4 leading-relaxed text-gray-600"
+    class="property-description my-4 leading-relaxed text-gray-600 dark:text-gray-400"
     [innerHTML]="propertyDetails()?.text?.description"
   ></div>
   <a
@@ -80,7 +82,9 @@
   >
 
   } @else {
-  <div class="property-description my-4 leading-relaxed">
+  <div
+    class="property-description my-4 leading-relaxed text-gray-600 dark:text-gray-400"
+  >
     {{ propertyDetails()?.text?.shareDescription }} ...
     <a
       class="block text-secondary text-[18px] w-fit p-2 hover:text-main transition-colors"
@@ -88,14 +92,13 @@
       >Show More</a
     >
   </div>
-
   }
 
   <div
     class="features-section my-5 flex flex-col gap-5 border border-gray-200 p-4 rounded-2xl"
   >
     <h3 class="text-[24px] text-head font-bold">Key Features</h3>
-    <div class="features gap-3 grid grid-cols-2">
+    <div class="features gap-3 grid grid-cols-1 md:grid-cols-2">
       @for (item of propertyDetails()?.keyFeatures; track $index) {
       <div
         class="feature col-span-1 bg-secondary p-3 rounded-xl text-head flex gap-4 items-center"
@@ -115,7 +118,7 @@
   <div
     class="Location-section my-5 flex flex-col gap-5 border border-gray-200 p-4 rounded-2xl"
   >
-    <h3 class="text-[24px] text-head font-bold">
+    <h3 class="text-[24px] dark:text-white text-head font-bold">
       <span class="text-secondary pe-2"
         ><i class="fa-solid fa-location-dot"></i></span
       >Location & Transport
@@ -125,7 +128,7 @@
       id="propertyMap"
     ></div>
     <div class="staions mt-4 flex flex-col gap-4">
-      <h4 class="flex text-head">
+      <h4 class="flex text-head dark:text-white">
         <span class="pe-2 text-secondary">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -162,31 +165,36 @@
       </div>
     </div>
   </div>
-
-  <div class="agent-card border-1 border-gray-200 w-full md:w-[70%]">
-    <div class="agent-header text-[22px] font-bold text-head p-4">
+  <div
+    class="agent-card border border-gray-200 dark:border-gray-700 w-full md:w-[75%]"
+  >
+    <div
+      class="agent-header text-[22px] font-bold text-head dark:text-white p-4"
+    >
       Contact Agent
     </div>
-    <div class="agent-body p-4 flex flex-col gap-4">
-      <div class="flex justify-between items-center">
-        <div class="flex items-center gap-2">
-          <span class="text-head text-[22px]">
+    <div class="agent-body p-4 flex flex-col gap-4 items-center md:items-start">
+      <div class="flex justify-between items-center w-full">
+        <div
+          class="flex items-center gap-2 flex-col md:flex-row text-center md:text-start"
+        >
+          <span class="text-head dark:text-white text-[22px]">
             <i class="fa-solid fa-building"></i>
           </span>
 
           <div class="text">
-            <h3 class="font-bold text-head">
+            <h3 class="font-bold text-head dark:text-white">
               {{ propertyDetails()?.customer?.companyName }}
             </h3>
 
-            <span class="text-[14px] text-[#626c84]">
+            <span class="text-[14px] text-[#626c84] dark:text-gray-400">
               <i class="fas fa-location-dot"></i>
               {{ propertyDetails()?.customer?.displayAddress }}
             </span>
           </div>
         </div>
         <img
-          class="rounded"
+          class="rounded hidden md:block"
           [src]="propertyDetails()?.customer?.logoPath"
           alt=""
         />
@@ -202,6 +210,77 @@
       </div>
     </div>
   </div>
+  <div
+    class="similar-properties-section my-5 border border-gray-200 dark:border-gray-700 rounded-2xl bg-white dark:bg-gray-900"
+  >
+    <h3 class="text-[24px] text-head dark:text-gray-100 font-bold p-4">
+      Similar Properties
+    </h3>
+    <div
+      class="similar-properties h-[600px] lg:h-[600px] py-[20px] bg-white dark:bg-gray-900"
+    >
+      <swiper-container
+        #similarRef
+        class="mySwiper h-full w-full block"
+        init="false"
+      >
+        @for (item of similarProperties(); track $index) {
+        <swiper-slide class="w-[300px] h-[400px] block">
+          <div
+            class="property-similar rounded-xl relative h-full w-full flex flex-col bg-white dark:bg-slate-800 shadow-lg"
+          >
+            <span
+              class="absolute top-2 right-2 bg-secondary dark:bg-gray-600 p-1 text-white rounded-full text-sm z-10"
+              >{{ item.propertySubType }}</span
+            >
+            <img
+              [src]="item.propertyImages.mainImageSrc"
+              [alt]="item.displayAddress"
+              class="w-full h-48 object-cover rounded-t-xl flex-none"
+            />
+            <div
+              class="p-5 flex flex-col gap-5 flex-1 text-gray-800 dark:text-gray-100"
+            >
+              <h3
+                class="font-semibold text-head dark:text-gray-100 text-lg truncate"
+              >
+                {{ item.displayAddress }}
+              </h3>
+              <div
+                class="flex gap-2 text-sm mt-2 text-gray-600 dark:text-gray-300"
+              >
+                <div class="flex items-center gap-1">
+                  <i
+                    class="fa-solid fa-bed text-gray-500 dark:text-gray-400"
+                  ></i>
+                  <span>{{ item.bedrooms }} |</span>
+                </div>
+                <div class="flex items-center gap-1">
+                  <i
+                    class="fa-solid fa-bath text-gray-500 dark:text-gray-400"
+                  ></i>
+                  <span>{{ item.bathrooms || 1 }}</span>
+                </div>
+              </div>
+              <span
+                class="font-bold text-[20px] block text-gray-900 dark:text-gray-50"
+              >
+                {{ item.price.amount }}
+              </span>
+              <div class="card-footer mt-auto">
+                <a
+                  [routerLink]="['/propertyDetails', item.id]"
+                  class="block bg-head dark:bg-blue-700 text-white p-2 rounded text-center hover:bg-secondary dark:hover:bg-gray-600 transition-all"
+                  >Learn More</a
+                >
+              </div>
+            </div>
+          </div>
+        </swiper-slide>
+        }
+      </swiper-container>
+    </div>
+  </div>
 </div>
 
 <p-dialog
@@ -211,6 +290,7 @@
   [style]="{ width: '50rem' }"
   [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
   [maximizable]="true"
+  (onShow)="initSwiper()"
 >
   <swiper-container class="mySwiper" init="false" #swiperRef>
     @for (image of propertyDetails()?.images; track $index) {

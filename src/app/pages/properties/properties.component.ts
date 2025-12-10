@@ -3,6 +3,7 @@ import {
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
   ElementRef,
+  inject,
   OnInit,
   signal,
   WritableSignal,
@@ -27,7 +28,8 @@ import { DatePipe } from '@angular/common';
 import * as L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { DialogModule } from 'primeng/dialog';
-import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-properties',
@@ -43,7 +45,6 @@ import { RouterLink } from '@angular/router';
     DrawerModule,
     DatePipe,
     DialogModule,
-    RouterLink,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
@@ -126,7 +127,7 @@ export class PropertiesComponent implements OnInit, AfterViewInit {
       radius: 15000,
     }).addTo(this.map);
   }
-
+  spinner = inject(NgxSpinnerService);
   ngAfterViewInit(): void {}
   ngOnInit(): void {
     this.cities = this._service.CITIES;
@@ -137,7 +138,13 @@ export class PropertiesComponent implements OnInit, AfterViewInit {
 
     this.getProperties();
   }
+  private router = inject(Router);
 
+  navigateToDetails(id: any) {
+    this.router.navigate(['/propertyDetails', id], {
+      queryParams: { region: this.filters.identifier },
+    });
+  }
   onSelectCity(city: Cities) {
     console.log(city);
     this.selectedCity.set(city);
@@ -197,19 +204,23 @@ export class PropertiesComponent implements OnInit, AfterViewInit {
   //     this.activeModal = null;
   //   }
   // }
-  toggleNumber() {
-    this.showNumber = !this.showNumber;
+  shownNumbers: { [propertyId: string]: boolean } = {};
+
+  toggleNumber(propertyId: string | number) {
+    this.shownNumbers[propertyId] = !this.shownNumbers[propertyId];
   }
   getProperties() {
+    this.spinner.show();
+
     this._service.getNewForSale(this.filters).subscribe({
       next: (res) => {
-        console.log(res);
         this.properties.set(
           res.data.filter((p: propertyDetails) => !p.featuredProperty)
         );
 
         this.totalRecords = res.totalResultCount;
         this.setMap(this.selectedCity, this.properties());
+        this.spinner.hide();
       },
       error: (err) => {
         console.log(err);

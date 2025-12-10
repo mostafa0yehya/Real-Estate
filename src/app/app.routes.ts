@@ -5,6 +5,7 @@ import { PropertiesComponent } from './pages/properties/properties.component';
 import { CompareComponent } from './pages/compare/compare.component';
 import { PricesComponent } from './pages/prices/prices.component';
 import { PropertyDetailsComponent } from './property-details/property-details.component';
+import { NotfoundComponent } from './pages/notfound/notfound.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -14,5 +15,5 @@ export const routes: Routes = [
   { path: 'compare', component: CompareComponent },
   { path: 'prices', component: PricesComponent },
   { path: 'propertyDetails/:productId', component: PropertyDetailsComponent },
-  { path: '**', component: HomeComponent, title: 'Home' },
+  { path: '**', component: NotfoundComponent },
 ];

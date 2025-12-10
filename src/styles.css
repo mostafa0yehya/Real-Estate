@@ -1,9 +1,15 @@
 @import "tailwindcss";
+@import "primeicons/primeicons.css";
+@custom-variant dark (&:where(.dark, .dark *));
+
 * {
   box-sizing: border-box;
 }
 body {
   font-family: "Inter", sans-serif;
+}
+.dark body {
+  background-color: var(--color-gray-900);
 }
 h1,
 h2,
@@ -26,6 +32,7 @@ button {
   --color-main: #061a4d;
   --color-second: #1f242e;
   --color-secondary: #f97316;
+  --color-secondary-hover: #f46b09;
 }
 .heading {
   display: flex;
@@ -58,4 +65,33 @@ button {
   height: 2px;
   background-color: #f97316;
   bottom: -15px;
+}
+.swiper-slide-shadow-left,
+.swiper-slide-shadow-right {
+  height: 400px;
+}
+
+/*dark mode for header*/
+.dark header a:hover {
+  color: white !important;
+}
+.dark header a.active {
+  color: white;
+}
+/*hero*/
+.dark .hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url(/images/hero-image.jfif) !important;
+  background-position: center !important;
+  background-size: cover !important;
+}
+/*explore cities*/
+.dark .p-tablist-tab-list,
+.dark .p-tabpanels.p-component {
+  background-color: var(--color-gray-900);
+}
+/*questions*/
+.dark .p-accordioncontent-content {
+  background-color: var(--color-gray-400);
+  color: white;
 }

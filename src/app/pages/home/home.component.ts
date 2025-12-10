@@ -19,6 +19,8 @@ import { SwiperOptions } from 'swiper/types';
 import { DatePipe } from '@angular/common';
 import { TooltipModule } from 'primeng/tooltip';
 import { Router, RouterLink } from '@angular/router';
+import { CountUpModule } from 'ngx-countup';
+import { AccordionModule } from 'primeng/accordion';
 
 @Component({
   selector: 'app-home',
@@ -29,6 +31,8 @@ import { Router, RouterLink } from '@angular/router';
     DatePipe,
     TooltipModule,
     RouterLink,
+    CountUpModule,
+    AccordionModule,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
@@ -47,6 +51,12 @@ export class HomeComponent implements OnInit {
   toggleNumber(propertyId: string | number) {
     this.shownNumbers[propertyId] = !this.shownNumbers[propertyId];
   }
+  countupOptions = {
+    duration: 3,
+    enableScrollSpy: true,
+    scrollSpyOnce: true,
+    useGrouping: true,
+  };
   ngOnInit(): void {
     this.cities = this.service.CITIES;
     this.currentCity = this.cities[0];

@@ -1,14 +1,17 @@
 <app-navbar></app-navbar>
 
-<router-outlet></router-outlet>
+<router-outlet> </router-outlet>
+<app-footer></app-footer>
 <ngx-spinner
-  bdColor="rgba(6 ,26, 77,0.85)"
+  bdColor="rgba(6 ,26, 77)"
   size="medium"
   color="#f97316"
   type="ball-fussion"
   [fullScreen]="true"
 >
-  <div class="flex text-white text-[25px] items-center gap-2 mt-32">
+  <div
+    class="flex text-white text-[25px] items-center gap-2 mt-32 flex-col md:flex-row text-center justify-center"
+  >
     <span class="text-[#f97316] text-[30px] font-bold"
       ><i class="fa-regular fa-house"></i
     ></span>
@@ -16,3 +19,8 @@
     <p>Preparing your next move....</p>
   </div>
 </ngx-spinner>
+<p-scrolltop
+  [threshold]="100"
+  icon="pi pi-arrow-up"
+  [buttonProps]="{ severity: 'contrast', raised: true, rounded: true }"
+/>

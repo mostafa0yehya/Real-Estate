@@ -1,0 +1,28 @@
+.footer {
+  background-color: #14181f;
+  color: #ccc;
+  padding: 50px 0;
+}
+
+.footer-links ul li a {
+  color: #ccc;
+  transition: 0.3s;
+}
+
+.footer-links ul li a:hover {
+  color: #ff8500;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  margin-top: 20px;
+  border-top: 1px solid #333;
+}
+.footer-social .links a {
+  font-size: 18px;
+  transition: 0.3s color;
+}
+.footer-social .links a:hover {
+  color: #ff8500;
+}
