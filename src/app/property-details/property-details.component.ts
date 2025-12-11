@@ -30,11 +30,6 @@ import { propertyDetails } from '../shared/interfaces/property-details';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class PropertyDetailsComponent implements OnInit, AfterViewInit {
-  constructor(
-    private _activatedRoute: ActivatedRoute,
-    private _service: PropertiesService
-  ) {}
-
   productId: InputSignal<string> = input<string>('');
   galleryVisible = false;
   spinner = inject(NgxSpinnerService);
@@ -64,18 +59,19 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
       slideShadows: true,
     },
   };
-  initSwiper() {
-    if (this.swiperRef) {
-      Object.assign(this.swiperRef.nativeElement, this.swiperConfig);
-      this.swiperRef.nativeElement.initialize();
-    }
-  }
-  showDialog() {
-    this.galleryVisible = !this.galleryVisible;
-  }
+
   propertyDetails = signal<PropertyMoreDetails | null>(null);
   similarProperties = signal<propertyDetails[] | null>(null);
   region: string = '';
+  isExpanded = false;
+  map!: L.Map;
+  filter: PropertyFilter = {} as PropertyFilter;
+
+  constructor(
+    private _activatedRoute: ActivatedRoute,
+    private _service: PropertiesService
+  ) {}
+
   ngOnInit(): void {
     this.spinner.show();
     this._service.getProperty(this.productId()).subscribe({
@@ -84,20 +80,24 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
 
         this.setMap();
         this.spinner.hide();
+        this.getSimilarProperties();
       },
     });
     this._activatedRoute.queryParams.subscribe((params) => {
       this.region = params['region'];
     });
-    this.getSimilarProperties();
   }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['productId'] && changes['productId'].currentValue) {
+      this.spinner.show();
       this._service.getProperty(this.productId()).subscribe({
         next: (res) => {
-          this.propertyDetails.set(res.data);
+          console.log('callled');
 
+          this.propertyDetails.set(res.data);
+          this.spinner.hide();
           this.setMap();
+          this.getSimilarProperties();
         },
       });
     }
@@ -109,17 +109,28 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
 
     this.similarRef.nativeElement.initialize();
   }
-  isExpanded = false;
+  initSwiper() {
+    if (this.swiperRef) {
+      Object.assign(this.swiperRef.nativeElement, this.swiperConfig);
+      this.swiperRef.nativeElement.initialize();
+    }
+  }
+  showDialog() {
+    this.galleryVisible = !this.galleryVisible;
+  }
 
   toggle() {
     this.isExpanded = !this.isExpanded;
   }
-
-  map!: L.Map;
   setMap() {
     if (this.map) {
       this.map.remove();
     }
+    L.Icon.Default.mergeOptions({
+      iconRetinaUrl: '/images/leaflet/images/marker-icon-2x.png',
+      iconUrl: '/images/leaflet/marker-icon.png',
+      shadowUrl: '/images/leaflet/marker-shadow.png',
+    });
     this.map = L.map('propertyMap').setView(
       [
         this.propertyDetails()?.location.latitude ?? 0,
@@ -151,18 +162,34 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
       this.propertyDetails()?.location.longitude ?? 0,
     ]).addTo(this.map);
   }
-  filter: PropertyFilter = {} as PropertyFilter;
   getSimilarProperties() {
     this.filter = {
       identifier: this.region,
-      property_type: this.propertyDetails()?.tenure.tenureType,
+      max_price:
+        Number(
+          this.propertyDetails()?.prices.primaryPrice.replace(/[^0-9.]/g, '')
+        ) + 200000,
+      min_price:
+        Number(
+          this.propertyDetails()?.prices.primaryPrice.replace(/[^0-9.]/g, '')
+        ) - 150000,
+      min_bedroom: (this.propertyDetails()?.bedrooms ?? 1) - 2,
+      max_bedroom: (this.propertyDetails()?.bedrooms ?? 1) + 10,
     };
+
     this._service.getNewForSale(this.filter).subscribe({
-      next: (res) => {
-        this.similarProperties.set([...res.data]);
+      next: (res: any) => {
+        if (Array.isArray(res.data)) {
+          const filtered = res.data.filter(
+            (item: propertyDetails) =>
+              item.id.toString() !== this.propertyDetails()?.id
+          );
+          this.similarProperties.set(filtered);
+        }
       },
       error: (err) => {
         console.log(err);
+        this.spinner.hide();
       },
     });
   }

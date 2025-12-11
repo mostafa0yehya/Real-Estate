@@ -104,7 +104,7 @@
       id="map"
     ></div>
     <div
-      class="properties w-full col-span-6 md:col-span-12 grid grid-cols-1 md:grid-cols-6 gap-4"
+      class="properties w-full col-span-6 md:col-span-12 grid grid-cols-1 lg:grid-cols-6 gap-4"
     >
       @for (prop of properties(); track prop.id) {
       <div
@@ -268,7 +268,12 @@
         {{ modalProperty?.summary }}
       </p>
 
-      <a pButton label="View Details" class="w-full" target="_blank"></a>
+      <a
+        pButton
+        (click)="navigateToDetails(modalProperty?.id)"
+        label="View Details"
+        class="w-full"
+      ></a>
     </div>
   </p-card>
 </p-dialog>

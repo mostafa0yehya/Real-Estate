@@ -217,17 +217,21 @@
       Similar Properties
     </h3>
     <div
-      class="similar-properties h-[600px] lg:h-[600px] py-[20px] bg-white dark:bg-gray-900"
+      class="similar-properties py-[20px] bg-white dark:bg-gray-900"
+      [class]="{
+        'h-[600px]': similarProperties()?.length
+      }"
     >
       <swiper-container
         #similarRef
         class="mySwiper h-full w-full block"
         init="false"
       >
-        @for (item of similarProperties(); track $index) {
-        <swiper-slide class="w-[300px] h-[400px] block">
+        @if(similarProperties()?.length){ @for (item of similarProperties();
+        track $index) {
+        <swiper-slide class="w-[300px] h-[450px] block">
           <div
-            class="property-similar rounded-xl relative h-full w-full flex flex-col bg-white dark:bg-slate-800 shadow-lg"
+            class="property-similar rounded-xl relative h-full w-full flex flex-col bg-white dark:bg-slate-800 shadow-lg P-2"
           >
             <span
               class="absolute top-2 right-2 bg-secondary dark:bg-gray-600 p-1 text-white rounded-full text-sm z-10"
@@ -277,6 +281,13 @@
             </div>
           </div>
         </swiper-slide>
+        } } @else {
+
+        <h1
+          class="text-2xl md:text-3xl font-bold text-red-500 text-center mb-2 w-full"
+        >
+          No Properties Found
+        </h1>
         }
       </swiper-container>
     </div>

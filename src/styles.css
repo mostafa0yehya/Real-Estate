@@ -95,3 +95,9 @@ button {
   background-color: var(--color-gray-400);
   color: white;
 }
+
+/*to top button*/
+.dark .p-ripple.p-button.p-component.p-scrolltop {
+  background-color: var(--color-secondary);
+  z-index: 100000;
+}

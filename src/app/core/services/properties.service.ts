@@ -14,7 +14,7 @@ export class PropertiesService {
 
   private headers = {
     'x-rapidapi-host': 'uk-real-estate-rightmove.p.rapidapi.com',
-    'X-RapidAPI-Key': 'f389171affmshe37e18063369469p116f85jsn465628d46137',
+    'X-RapidAPI-Key': '58790bcf07mshf5caa4f722481dfp1b8777jsna8c77501d794',
   };
 
   PropertiesCompareList = signal<propertyDetails[]>([]);
@@ -26,7 +26,6 @@ export class PropertiesService {
     const key = JSON.stringify(filter);
 
     if (this.cache[key]) {
-      console.log('📦 From Cache:', key);
       return of(this.cache[key]);
     }
 

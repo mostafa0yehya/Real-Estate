@@ -64,10 +64,16 @@ export class PropertiesComponent implements OnInit, AfterViewInit {
   propertyFilter: PropertyFilter | null = null;
   constructor(public _service: PropertiesService, private eRef: ElementRef) {}
   map!: L.Map;
+
   setMap(city: WritableSignal<Cities>, properties: propertyDetails[] | null) {
     if (this.map) {
       this.map.remove();
     }
+    L.Icon.Default.mergeOptions({
+      iconRetinaUrl: '/images/leaflet/images/marker-icon-2x.png',
+      iconUrl: '/images/leaflet/marker-icon.png',
+      shadowUrl: '/images/leaflet/marker-shadow.png',
+    });
     this.map = L.map('map').setView(city().location as [number, number], 10);
     L.tileLayer(
       'https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=vL7hxmvsRToGOSwlYGsK',
@@ -102,7 +108,7 @@ export class PropertiesComponent implements OnInit, AfterViewInit {
         icon: houseIcon,
       }).addTo(this.map);
 
-      const popupContent = ``;
+      const popupContent = prop.displayAddress;
 
       marker.bindPopup(popupContent, {
         autoPan: false,
