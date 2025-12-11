@@ -69,9 +69,9 @@ export class PropertiesComponent implements OnInit, AfterViewInit {
       this.map.remove();
     }
     L.Icon.Default.mergeOptions({
-      iconRetinaUrl: '/images/leaflet/images/marker-icon-2x.png',
-      iconUrl: '/images/leaflet/marker-icon.png',
-      shadowUrl: '/images/leaflet/marker-shadow.png',
+      iconRetinaUrl: '../images/leaflet/images/marker-icon-2x.png',
+      iconUrl: '../images/leaflet/images/marker-icon.png',
+      shadowUrl: '../images/leaflet/images/marker-shadow.png',
     });
     this.map = L.map('map').setView(city().location as [number, number], 10);
     L.tileLayer(
