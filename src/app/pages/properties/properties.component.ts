@@ -26,7 +26,6 @@ import { AccordionModule } from 'primeng/accordion';
 import { DrawerModule } from 'primeng/drawer';
 import { DatePipe } from '@angular/common';
 import * as L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
 import { DialogModule } from 'primeng/dialog';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
