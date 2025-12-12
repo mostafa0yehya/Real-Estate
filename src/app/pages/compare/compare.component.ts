@@ -1,4 +1,4 @@
-import { Component, computed, inject, Signal } from '@angular/core';
+import { Component, computed, inject, OnInit, Signal } from '@angular/core';
 import { PropertiesService } from '../../core/services/properties.service';
 import { CurrencyPipe } from '@angular/common';
 
@@ -8,7 +8,15 @@ import { CurrencyPipe } from '@angular/common';
   templateUrl: './compare.component.html',
   styleUrl: './compare.component.css',
 })
-export class CompareComponent {
+export class CompareComponent implements OnInit {
+  ngOnInit(): void {
+    const propertiesList = localStorage.getItem('properties');
+
+    if (propertiesList) {
+      const parsedList = JSON.parse(propertiesList);
+      this.propertiesService.PropertiesCompareList.set(parsedList);
+    }
+  }
   propertiesService = inject(PropertiesService);
   properties = computed(() => this.propertiesService.PropertiesCompareList());
 }

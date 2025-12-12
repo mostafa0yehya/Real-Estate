@@ -85,12 +85,20 @@ export class PropertiesService {
     }
 
     this.PropertiesCompareList.update((arr) => [...arr, property]);
+    localStorage.setItem(
+      'properties',
+      JSON.stringify(this.PropertiesCompareList())
+    );
     this.toast.success('Property added to your comparison list.');
   }
 
   RemoveFromCompare(propertyId: number) {
     this.PropertiesCompareList.update((list) =>
       list.filter((p) => p.id !== propertyId)
+    );
+    localStorage.setItem(
+      'properties',
+      JSON.stringify(this.PropertiesCompareList())
     );
     this.toast.success('Property removed from comparison.');
   }
