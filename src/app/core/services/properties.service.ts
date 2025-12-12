@@ -37,7 +37,6 @@ export class PropertiesService {
         const value = (filter as any)[key];
         if (value !== undefined && value !== null) {
           params = params.set(key, value.toString());
-          console.log(params);
         }
       });
     }

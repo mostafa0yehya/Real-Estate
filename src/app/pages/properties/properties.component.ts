@@ -29,6 +29,7 @@ import * as L from 'leaflet';
 import { DialogModule } from 'primeng/dialog';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-properties',
@@ -61,7 +62,11 @@ export class PropertiesComponent implements OnInit, AfterViewInit {
   showNumber = false;
   properties: WritableSignal<propertyDetails[] | null> = signal(null);
   propertyFilter: PropertyFilter | null = null;
-  constructor(public _service: PropertiesService, private eRef: ElementRef) {}
+  constructor(
+    public _service: PropertiesService,
+    private eRef: ElementRef,
+    toast: ToastrService
+  ) {}
   map!: L.Map;
 
   setMap(city: WritableSignal<Cities>, properties: propertyDetails[] | null) {
@@ -203,13 +208,7 @@ export class PropertiesComponent implements OnInit, AfterViewInit {
   closeAllModals() {
     this.activeModal = null;
   }
-  // @HostListener('document:click', ['$event'])
-  // onDocumentClick(event: MouseEvent) {
-  //   const target = event.target as HTMLElement;
-  //   if (!target.closest('.bed-bath') && !target.closest('.price')) {
-  //     this.activeModal = null;
-  //   }
-  // }
+
   shownNumbers: { [propertyId: string]: boolean } = {};
 
   toggleNumber(propertyId: string | number) {
@@ -228,9 +227,7 @@ export class PropertiesComponent implements OnInit, AfterViewInit {
         this.setMap(this.selectedCity, this.properties());
         this.spinner.hide();
       },
-      error: (err) => {
-        console.log(err);
-      },
+      error: (err) => {},
     });
   }
   onPageChange(e: any) {
@@ -253,8 +250,6 @@ export class PropertiesComponent implements OnInit, AfterViewInit {
   modalVisible = false;
   modalProperty: propertyDetails | null = null;
   showDialog(prop: propertyDetails) {
-    console.log('hhhhh');
-
     this.modalVisible = !this.modalVisible;
     this.modalProperty = prop;
   }
