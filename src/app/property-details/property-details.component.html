@@ -303,12 +303,16 @@
   [maximizable]="true"
   (onShow)="initSwiper()"
 >
-  <swiper-container class="mySwiper" init="false" #swiperRef>
+  <swiper-container
+    class="mySwiper h-[50vh] md:h-[75vh]"
+    init="false"
+    #swiperRef
+  >
     @for (image of propertyDetails()?.images; track $index) {
 
     <swiper-slide class="flex justify-center items-center"
       ><img
-        class="object-contain w-[80%] max-h-[75vh]"
+        class="object-contain w-full md:w-[80%] max-h-[75vh]"
         [src]="image.url"
         alt=""
     /></swiper-slide>

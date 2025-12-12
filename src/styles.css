@@ -101,3 +101,13 @@ button {
   background-color: var(--color-secondary);
   z-index: 100000;
 }
+@media (max-width: 768px) {
+  .p-dialog-header {
+    margin-top: 70px;
+  }
+}
+@media (min-width: 769px) {
+  .p-dialog-header {
+    margin-top: 50px;
+  }
+}
