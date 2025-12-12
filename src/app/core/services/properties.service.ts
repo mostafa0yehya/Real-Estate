@@ -24,6 +24,7 @@ export class PropertiesService {
 
   getNewForSale(filter: PropertyFilter): Observable<any> {
     const key = JSON.stringify(filter);
+    console.log(filter);
 
     if (this.cache[key]) {
       return of(this.cache[key]);
@@ -36,6 +37,7 @@ export class PropertiesService {
         const value = (filter as any)[key];
         if (value !== undefined && value !== null) {
           params = params.set(key, value.toString());
+          console.log(params);
         }
       });
     }

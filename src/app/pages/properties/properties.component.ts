@@ -181,7 +181,8 @@ export class PropertiesComponent implements OnInit, AfterViewInit {
   sortBy: any;
   selectBedroom(bed: string) {
     this.selectedBedroom = bed;
-    if (bed.includes('+')) this.filters.min_bedroom = +bed;
+    if (bed.includes('+'))
+      this.filters.min_bedroom = Number(bed.replace('+', ''));
     else this.filters.max_bedroom = +bed;
     this.activeModal = null;
   }
