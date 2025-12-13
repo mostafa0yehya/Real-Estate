@@ -31,9 +31,7 @@ table tbody tr {
   border: 1px solid hsl(201, 20%, 88%);
   transition: 0.3s all;
 }
-table tbody tr:hover {
-  background-color: #f6f7f9;
-}
+
 .feature {
   text-align: start;
 }
