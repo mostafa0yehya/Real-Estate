@@ -1,7 +1,7 @@
 export interface PropertyFilter {
-  identifier: string; // Required
+  identifier: string;
 
-  page?: number; // optional
+  page?: number;
   sort_by?: SortBy;
   search_radius?:
     | '0.0'
