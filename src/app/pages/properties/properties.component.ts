@@ -145,16 +145,20 @@ export class PropertiesComponent implements OnInit {
 
     this._service.getNewForSale(this.filters).subscribe({
       next: (res) => {
-        const filterdData = res.data.filter(
-          (p: propertyDetails) => !p.featuredProperty
-        );
-        this.properties.set(filterdData);
+        if (res.data) {
+          const filterdData = res.data.filter(
+            (p: propertyDetails) => !p.featuredProperty
+          );
+          this.properties.set(filterdData);
 
-        const removedCount = res.data.length - filterdData.length;
-        this.totalRecords = res.totalResultCount - removedCount;
-        this.first = ((this.filters.page ?? 1) - 1) * this.rows;
+          const removedCount = res.data.length - filterdData.length;
+          this.totalRecords = res.totalResultCount - removedCount;
+          this.first = ((this.filters.page ?? 1) - 1) * this.rows;
 
-        this.setMap(this.selectedCity, this.properties());
+          this.setMap(this.selectedCity, this.properties());
+        } else {
+          this.toast.error(res.message.error);
+        }
         this.spinner.hide();
       },
       error: (err) => {
