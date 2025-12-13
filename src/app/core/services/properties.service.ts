@@ -14,7 +14,7 @@ export class PropertiesService {
 
   private headers = {
     'x-rapidapi-host': 'uk-real-estate-rightmove.p.rapidapi.com',
-    'X-RapidAPI-Key': '6173e750a3msh35772ed7623e4fdp1830dajsnf9ecca7c8118',
+    'X-RapidAPI-Key': '6fd3fc2baemsh7b8225504b07ab4p15fa54jsn9f8d27730bb7',
   };
 
   PropertiesCompareList = signal<propertyDetails[]>([]);
